@@ -22,7 +22,8 @@
     "test": "jest",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "^14.1.0",

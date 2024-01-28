@@ -4,3 +4,4 @@ dist
 jest.config.js
 .next
 next-env.d.ts
+.husky
