@@ -4,5 +4,11 @@ module.exports = {
       files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
       extends: 'standard-with-typescript'
     }
-  ]
+  ],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  rules: {
+    '@typescript-eslint/prefer-nullish-coalescing': 'error',
+  },
 }
