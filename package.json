@@ -1,5 +1,7 @@
 {
   "devDependencies": {
-    "git-commit-msg-linter": "^5.0.6"
+    "@types/node": "^20.11.9",
+    "git-commit-msg-linter": "^5.0.6",
+    "typescript": "^5.3.3"
   }
 }
