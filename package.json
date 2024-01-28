@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/jest": "^29.5.11",
     "@types/node": "^20.11.9",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
@@ -10,10 +11,13 @@
     "eslint-plugin-promise": "^6.1.1",
     "git-commit-msg-linter": "^5.0.6",
     "husky": "^9.0.6",
+    "jest": "^29.7.0",
     "lint-staged": "^15.2.0",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "test": "jest"
   }
 }
