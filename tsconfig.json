@@ -4,6 +4,13 @@
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
-    "esModuleInterop":true
-  }
+    "esModuleInterop":true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
 }
