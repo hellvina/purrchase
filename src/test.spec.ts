@@ -1,7 +1,7 @@
 describe('[testspec] Test case', () => {
-    beforeEach(() => {});
+  beforeEach(() => {})
 
-    it('Should ', () => {
-        expect(1).toBe(1);
-    })
+  it('Should ', () => {
+    expect(1).toBe(1)
+  })
 })
