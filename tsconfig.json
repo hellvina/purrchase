@@ -3,9 +3,10 @@
     "target": "es6",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "src",
     "esModuleInterop":true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "preserveConstEnums": true
   },
   "include": [
     "**/*.ts",
@@ -13,4 +14,7 @@
     "src/**/*.ts",
     "src/**/*.tsx"
   ],
+  "exclude": [
+    "node_modules"
+  ]
 }

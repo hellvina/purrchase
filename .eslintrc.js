@@ -10,5 +10,11 @@ module.exports = {
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   rules: {
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
+    'semi': 'off',
+    '@typescript-eslint/semi': 'error'
   },
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  }
 }
