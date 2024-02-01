@@ -39,13 +39,14 @@ export const findById = async (userId: string): Promise<Live[] | null> => {
   return lives.length > 0 ? lives : null
 }
 
-export const findAll = async (page: number): Promise<Live[] | null> => {
+export const findAll = async (page: string): Promise<Live[] | null> => {
   const limitByPage = 20
+  const pageInt = parseInt(page)
 
   try {
     const lives = await prisma.live.findMany({
       take: limitByPage,
-      skip: (page - 1) * limitByPage,
+      skip: (pageInt - 1),
       orderBy: {
         createdAt: 'desc'
       }

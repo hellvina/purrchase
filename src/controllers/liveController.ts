@@ -43,14 +43,14 @@ export const listLives = async (req: Request, res: Response): Promise<void> => {
 
 export const allLives = async (req: Request, res: Response): Promise<void> => {
   const userToken = req.headers.authorization
-  const page: number = req.body.page
+  const page: string = req.query.page as string
 
   if (userToken === null) {
     unauthorized(res)
     return
   }
 
-  if (page == null || typeof page !== 'number') {
+  if (page == null || typeof page !== 'string') {
     badRequest(res)
     return
   }
@@ -60,14 +60,13 @@ export const allLives = async (req: Request, res: Response): Promise<void> => {
 }
 
 export const deleteLive = async (req: Request, res: Response): Promise<void> => {
-  const live: string = req.body.liveId
+  const live: string = req.params.liveId
 
   if (live === null) {
     unauthorized(res)
   }
 
   if (typeof live !== 'string') {
-    console.log('AQUI', live)
     badRequest(res)
   }
 
@@ -84,7 +83,6 @@ export const editLive = async (req: Request, res: Response): Promise<void> => {
   }
 
   if (typeof live !== 'string') {
-    console.log('AQUI', live)
     badRequest(res)
   }
 
@@ -94,7 +92,6 @@ export const editLive = async (req: Request, res: Response): Promise<void> => {
   if (response != null) {
     okResponse(res, response, 'Success updatedata')
   } else {
-    console.log('AQUI MININA', response)
     serverError(res)
   }
 }

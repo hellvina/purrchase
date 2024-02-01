@@ -38,7 +38,7 @@ router.get('/user/signin', body('username').isString(), protect, (req: Request, 
 router.post('/lives/', (req: Request, res: Response) => {
   void createNewLive(req, res)
 })
-router.get('/lives/', (req: Request, res: Response) => {
+router.get('/lives/:page?', (req: Request, res: Response) => {
   void allLives(req, res)
 })
 
