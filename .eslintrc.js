@@ -11,7 +11,8 @@ module.exports = {
   rules: {
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
     'semi': 'off',
-    '@typescript-eslint/semi': 'error'
+    '@typescript-eslint/semi': 'error',
+    'no-prototype-builtins': 'off'
   },
   "parserOptions": {
     "project": "./tsconfig.json",

@@ -1,3 +1,3 @@
 export * from './fakeJWT'
 export * from './testHelper'
-export * from './httpStatusode'
+export * from './mergeObjects'

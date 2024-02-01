@@ -1,14 +1,13 @@
 import { comparePasswords, createJWT } from '../modules'
-import { UserDb } from '../data'
+import { UserDb } from '../database'
 import type { Request, Response } from 'express'
+import { badRequest, okResponse, unauthorized } from '../helpers/httpHelper'
 
-
-export const createNewUser = async (req: Request, res: Response) => {
-  console.log(req.body)
+export const createNewUser = async (req: Request, res: Response): Promise<void> => {
   const data = {
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password
+    username: req.body?.username,
+    email: req.body?.email,
+    password: req.body?.password
   }
 
   const user = await UserDb.add(data)
@@ -16,22 +15,36 @@ export const createNewUser = async (req: Request, res: Response) => {
   res.json({ token })
 }
 
-export const authUser = async (req: Request, res: Response) => {
-  const user = await UserDb.find(req.body.username)
+export const authUser = async (req: Request, res: Response): Promise<void> => {
+  const username = req.body.username
+  const requestPassword = req.body.password
+
+  if (typeof username !== 'string' || typeof requestPassword !== 'string') {
+    badRequest(res)
+    return
+  }
+
+  const user = await UserDb.find(username)
 
   if (user === null) {
-    res.status(401).json({message: 'Successful authentication'})
-   }
+    badRequest(res)
+    return
+  }
 
-  const userPassword = user!.password
-  const requestPassword = req.body.password
+  const userPassword = user?.password
+
+  if (userPassword === undefined) {
+    unauthorized(res)
+    return
+  }
+
   const isValid = await comparePasswords(requestPassword, userPassword)
 
   if (!isValid) {
-    res.status(401).json({message: 'Successful authentication'})
+    badRequest(res)
     return
   }
 
   const token = createJWT(user)
-  res.status(200).json({token, message: 'Successful authentication'})
+  okResponse(res, token)
 }
