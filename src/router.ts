@@ -1,33 +1,65 @@
-import { Router } from 'express'
+import { Router, type Request, type Response } from 'express'
 
+import {
+  authUser,
+  createNewLive,
+  createNewUser,
+  deleteLive,
+  allLives,
+  listLives,
+  listProducts,
+  editLive
+} from './controllers'
+
+import { protect } from './middlwares'
+import { body, validationResult } from 'express-validator'
 const router = Router()
 
 /**
  * User
  */
-router.get('/user', (req, res) => {})
-router.get('/user/:id', (req, res) => {})
-router.post('/user', (req, res) => {})
-router.put('/user/:id', (req, res) => {})
-router.delete('/user/:id', (req, res) => {})
+router.post('/user/signup', (req: Request, res: Response) => {
+  void createNewUser(req, res)
+})
+
+router.get('/user/signin', body('username').isString(), protect, (req: Request, res: Response) => {
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() })
+  }
+
+  void authUser(req, res)
+})
 
 /**
  * Live
  */
+router.post('/lives/', (req: Request, res: Response) => {
+  void createNewLive(req, res)
+})
+router.get('/lives/', (req: Request, res: Response) => {
+  void allLives(req, res)
+})
 
-router.get('/live', (req, res) => {})
-router.get('/live/:id', (req, res) => {})
-router.post('/live', (req, res) => {})
-router.put('/update/:id', (req, res) => {})
-router.delete('/update/:id', (req, res) => {})
+router.delete('/lives/', protect, (req: Request, res: Response) => {
+  void deleteLive(req, res)
+})
+
+router.put('/lives/', protect, (req: Request, res: Response) => {
+  void editLive(req, res)
+})
+
+router.get('/user/lives', (req: Request, res: Response) => {
+  void listLives(req, res)
+})
 
 /**
  * Product
  */
 
-router.get('/prodct', (req, res) => {})
-router.get('/updatepoint/:id', (req, res) => {})
-router.post('/product', (req, res) => {})
-router.delete('/updatepoint/:id', (req, res) => {})
+router.get('/live/producs', (req: Request, res: Response) => {
+  void listProducts(req, res)
+})
 
 export default router

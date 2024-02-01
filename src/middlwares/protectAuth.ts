@@ -16,7 +16,7 @@ export const protect = (req: AddUserRequest, res: Response, next: NextFunction):
   const [, token] = bearer.split(' ')
 
   if (token === '') {
-    res.status(401).send('Not authorized')
+    res.status(401).send('Invalid token')
     return
   }
 
